@@ -6,26 +6,37 @@ palindrome. Write a main program to test your function with a user-defined strin
 #include<cstring>
 using namespace std;
 const int MAX = 100;
+bool IsPalindrome(char[]);//Function prototype
 int main()
 {
 	char  word[MAX];
-	char* p;
-	int i;
 	cout << "Enter a word:";
 	cin >> word;
-	p = word;
-	for (i = 0; word[i] != '\0'; i++);
+	if (IsPalindrome(word) == true)
+		cout << "It is a palindrome.";
+	else
+		cout << "It is not a palindrome";
+	return 0;
+}
+
+bool IsPalindrome(char Word[])
+{
+	char* ptr;
+	ptr = Word;
+	int i;
+	for (i = 0; Word[i] != '\0'; i++);
 	i--;
-	while (p < (word + i))//(word + i) basically means null character since it adds i to the position of the first element
+	while (ptr < (Word + i))//(word + i) basically means null character since it adds i to the position of the first element
 	{
-		if (*p != word[i])
+		if (*ptr != Word[i])
 		{
-			cout << "It is not a palindrome.";
+			return false;
 			break;
 		}
-		p++;
+		ptr++;
 		i--;
 	}
-	if (p >= (word + i))//in case of even numbers too
-		cout << "It is a palindrome.";
+	if (ptr >= (Word + i))//in case of even numbers too
+		return true;
+	return false;
 }
